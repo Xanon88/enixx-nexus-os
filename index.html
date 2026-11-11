@@ -1,1 +1,445 @@
-PLACEHOLDER
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enixx OS · The Nexus — Neural Link</title>
+<style>
+  :root {
+    --bg: #050510;
+    --panel: rgba(12, 8, 32, 0.8);
+    --border: #4a1a8a;
+    --accent: #8a2be2;
+    --glow: #a020f0;
+    --cyan: #00e5ff;
+    --text: #e0e0ff;
+    --muted: #8888bb;
+    --cosmic: #ff6b35;
+    --neural: #00ff9d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    color: var(--text);
+    padding: 20px 0;
+  }
+  .dashboard {
+    width: 390px;
+    background: var(--bg);
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 0 40px #4a00e0;
+    position: relative;
+  }
+  .dashboard::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(ellipse at 20% 10%, rgba(255,107,53,0.08), transparent 50%),
+                radial-gradient(ellipse at 80% 90%, rgba(138,43,226,0.1), transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .status-bar, .date-pill, .header, .welcome, .main-visual, .panels, .activity, .quick {
+    position: relative;
+    z-index: 1;
+  }
+  .status-bar {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .date-pill {
+    background: #222;
+    border-radius: 20px;
+    padding: 6px 16px;
+    text-align: center;
+    font-size: 12px;
+    margin: 0 auto;
+    width: fit-content;
+  }
+  .header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .logo-icon {
+    width: 32px;
+    height: 32px;
+    background: conic-gradient(#8a2be2, #ff6b35, #00e5ff);
+    border-radius: 8px;
+    display: grid;
+    place-items: center;
+  }
+  .status-pill {
+    background: rgba(0,255,157,0.15);
+    border: 1px solid var(--neural);
+    border-radius: 16px;
+    padding: 4px 10px;
+    font-size: 9px;
+    cursor: pointer;
+    color: var(--neural);
+  }
+  .welcome {
+    text-align: center;
+    padding: 10px 0;
+  }
+  .welcome h1 {
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 12px var(--glow);
+  }
+  .welcome p { font-size: 11px; color: var(--cyan); }
+  .main-visual {
+    position: relative;
+    height: 260px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .central-ring {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #1a0033, transparent 70%);
+    border: 3px solid #6a00ff;
+    box-shadow: 0 0 50px #6a00ff, inset 0 0 30px #4a00e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+  }
+  .central-ring::before { content:''; position:absolute; inset:-16px; border:1px solid rgba(138,43,226,0.4); border-radius:50%; animation:spin 18s linear infinite; }
+  .central-ring::after { content:''; position:absolute; inset:-32px; border:1px dashed rgba(255,107,53,0.3); border-radius:50%; animation:spin 28s linear infinite reverse; }
+  .rays {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: conic-gradient(from 0deg, transparent 0 8deg, rgba(138,43,226,0.2) 8deg 10deg, transparent 10deg 18deg);
+    border-radius: 50%;
+    animation: spin 35s linear infinite;
+  }
+  .left-gauge {
+    position: absolute;
+    left: 16px;
+    top: 30px;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    font-size: 10px;
+    cursor: pointer;
+  }
+  .gauge-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(#00e5ff 0% 8%, #4a00e0 8% 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .gauge-circle::before { content:''; position:absolute; inset:10px; background:var(--bg); border-radius:50%; }
+  .gauge-text { position:relative; z-index:1; font-size:24px; font-weight:700; }
+  .panels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+  .card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .card:hover, .card:active {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px var(--glow);
+  }
+  .card h3 { font-size: 10px; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+  .ai-card { cursor: default; }
+  .ai-chat {
+    max-height: 120px;
+    overflow-y: auto;
+    margin: 6px 0;
+    font-size: 11px;
+    line-height: 1.4;
+  }
+  .ai-msg { margin: 4px 0; }
+  .ai-msg.user { color: var(--cyan); }
+  .ai-msg.ai { color: #ddd; }
+  .typing { color: var(--muted); font-style: italic; }
+  .suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-top: 6px;
+  }
+  .suggestion {
+    background: rgba(138,43,226,0.3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 3px 8px;
+    font-size: 9px;
+    cursor: pointer;
+  }
+  .suggestion:hover { background: rgba(138,43,226,0.5); }
+  .ai-input {
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 6px 10px;
+    color: var(--text);
+    font-size: 11px;
+    margin-top: 6px;
+  }
+  .activity, .quick { padding: 8px 12px; }
+  .activity div, .quick div { 
+    display: flex; 
+    justify-content: space-between; 
+    margin: 4px 0; 
+    font-size: 11px; 
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+  }
+  .activity div:hover, .quick div:hover { background: rgba(138,43,226,0.2); }
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal.active { display: flex; }
+  .modal-content {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    width: 320px;
+    max-height: 70vh;
+    overflow: auto;
+    box-shadow: 0 0 30px var(--glow);
+  }
+  .modal-close { float: right; cursor: pointer; font-size: 18px; }
+  .codex-entry { margin: 8px 0; padding: 8px; background: rgba(0,0,0,0.3); border-radius: 8px; cursor: pointer; }
+  .codex-entry:hover { background: rgba(138,43,226,0.2); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .pulse { animation: pulse 2.5s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { box-shadow: 0 0 40px #6a00ff; } 50% { box-shadow: 0 0 70px #a020f0; } }
+</style>
+</head>
+<body>
+<div class="dashboard">
+  <div class="status-bar">
+    <span id="time">16:09</span>
+    <span>45%</span>
+  </div>
+  <div class="date-pill">9. august<br>11:03</div>
+  <div class="header">
+    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'Hybrid quantum operating system with Neural Link integration and Codex knowledge layer.')">
+      <div class="logo-icon">⬡</div>
+      <div>
+        <div>ENIXX OS</div>
+        <div style="font-size:9px;color:var(--muted);">THE NEXUS</div>
+      </div>
+    </div>
+    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 98%<br>Signal strength: Strong<br>Codex access: Unlocked<br>Operator linked.')">NEURAL LINK: ACTIVE</div>
+  </div>
+  <div class="welcome">
+    <h1>WELCOME TO THE NEXUS</h1>
+    <p>>> ENIXX OS · NEURAL LINKED SYSTEM</p>
+  </div>
+  <div class="main-visual">
+    <div class="rays"></div>
+    <div class="left-gauge" onclick="showModal('PS Q 6GR Gauge', 'Current quantum load: 2%<br>Neural Link load: Minimal<br>All cores stable.')">
+      <div>PS Q 6GR</div>
+      <div class="gauge-circle"><div class="gauge-text">2%</div></div>
+    </div>
+    <div class="central-ring pulse" onclick="showModal('Nexus Core', 'Digital signature: 88888888<br>Central nexus ring active.<br>Neural Link synchronized.')">
+      <div style="font-size:26px;font-weight:700;letter-spacing:1px;">88888888</div>
+    </div>
+  </div>
+  <div class="panels">
+    <div class="card" onclick="showModal('System Overview', 'CPU: 52%<br>GPU: 41%<br>NPU: 87%<br>RAM: 69%<br><br>QUANTUM LOAD: LOW<br>Neural Link: Stable')">
+      <h3>SYSTEM OVERVIEW</h3>
+      CPU 52% · GPU 41%<br>NPU 87% · RAM 69%<br><span style="color:#00e5ff;">QUANTUM LOAD LOW</span>
+    </div>
+    <div class="card ai-card" id="ai-card">
+      <h3>AI COMPANION · NEURAL</h3>
+      NEXUS AI · LINKED
+      <div class="ai-chat" id="ai-chat">
+        <div class="ai-msg ai">Neural Link established. How can I enhance your reality, Operator?</div>
+      </div>
+      <div class="suggestions">
+        <div class="suggestion" onclick="quickAsk('System status?')">System status?</div>
+        <div class="suggestion" onclick="quickAsk('Open Codex')">Open Codex</div>
+        <div class="suggestion" onclick="quickAsk('Neural Link status')">Neural Link</div>
+      </div>
+      <input class="ai-input" id="ai-input" placeholder="Ask via Neural Link..." onkeypress="if(event.key==='Enter') sendAI()">
+    </div>
+    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active.')">
+      <h3>SPATIAL DESKTOP</h3>
+      FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES 5
+    </div>
+    <div class="card" onclick="showModal('Secure Vault', 'ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA<br>Neural authenticated.')">
+      <h3>SECURE VAULT</h3>
+      ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA
+    </div>
+  </div>
+  <div class="activity">
+    <div onclick="showModal('Activity', 'Neural Link synchronized at 20:45:02<br>Status: Active')"><span>Neural Link synchronized</span><span>20:45:02</span></div>
+    <div onclick="showModal('Activity', 'Codex entry accessed at 20:44:11<br>Status: Success')"><span>Codex entry accessed</span><span>20:44:11</span></div>
+    <div onclick="showModal('Activity', 'Secure Workspace accessed at 20:49:32<br>Status: Authenticated')"><span>Secure Workspace accessed</span><span>20:49:32</span></div>
+  </div>
+  <div class="quick">
+    <div onclick="showModal('Quick Launch', 'WORKSPACE opened.')">WORKSPACE</div>
+    <div onclick="openCodex()">CODEX</div>
+    <div onclick="showModal('Quick Launch', 'VAULT accessed. Neural auth confirmed.')">VAULT</div>
+    <div onclick="showModal('Quick Launch', 'NETWORK map active.')">NETWORK</div>
+    <div onclick="showModal('Quick Launch', 'SETTINGS panel.')">SETTINGS</div>
+    <div onclick="showModal('Quick Launch', 'MORE options.')">MORE</div>
+  </div>
+</div>
+
+<div class="modal" id="modal">
+  <div class="modal-content">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <h3 id="modal-title"></h3>
+    <div id="modal-body" style="margin-top:10px; line-height:1.4;"></div>
+  </div>
+</div>
+
+<script>
+const codexEntries = [
+  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 98%. Allows seamless AI interaction and spatial control." },
+  { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault." },
+  { title: "Codex Access", body: "Knowledge layer unlocked via Neural Link. Contains system lore, security protocols, and operator history." },
+  { title: "Security Core", body: "Enixx-Secure active. Deny-by-default capabilities. Post-quantum cryptography enabled." }
+];
+
+function showModal(title, body) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').innerHTML = body;
+  document.getElementById('modal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function openCodex() {
+  let body = '<div style="margin-bottom:10px;">CODEX · Neural Linked Knowledge Layer</div>';
+  codexEntries.forEach(entry => {
+    body += `<div class="codex-entry" onclick="showModal('${entry.title}', '${entry.body}')">${entry.title}</div>`;
+  });
+  showModal('Codex', body);
+}
+
+const responses = {
+  default: [
+    "Neural Link processing... The Nexus responds.",
+    "Synchronized. How else may I assist via the link?",
+    "Codex reference located. Proceeding.",
+    "Floating workspace updated through neural pathway.",
+    "Enixx OS core stable. Neural Link holding."
+  ],
+  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (98% sync). All cores nominal.",
+  vault: "Secure Vault accessed via Neural Link. Omega clearance confirmed.",
+  nexus: "The Nexus is the neural-linked spatial core of Enixx OS.",
+  codex: "Codex opened. Knowledge layer available. Select an entry.",
+  neural: "Neural Link status: ACTIVE. Synchronization strong. Operator linked."
+};
+
+function addMessage(text, isUser = false) {
+  const chat = document.getElementById('ai-chat');
+  const msg = document.createElement('div');
+  msg.className = 'ai-msg ' + (isUser ? 'user' : 'ai');
+  msg.textContent = (isUser ? 'You: ' : 'Nexus AI: ') + text;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function showTyping() {
+  const chat = document.getElementById('ai-chat');
+  const typing = document.createElement('div');
+  typing.className = 'ai-msg typing';
+  typing.id = 'typing';
+  typing.textContent = 'Neural Link processing...';
+  chat.appendChild(typing);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+function hideTyping() {
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+}
+
+function getResponse(query) {
+  const q = query.toLowerCase();
+  if (q.includes('status') || q.includes('system')) return responses.status;
+  if (q.includes('vault') || q.includes('secure')) return responses.vault;
+  if (q.includes('nexus') || q.includes('what is')) return responses.nexus;
+  if (q.includes('codex')) return responses.codex;
+  if (q.includes('neural') || q.includes('link')) return responses.neural;
+  return responses.default[Math.floor(Math.random() * responses.default.length)];
+}
+
+function sendAI() {
+  const input = document.getElementById('ai-input');
+  const query = input.value.trim();
+  if (!query) return;
+  addMessage(query, true);
+  input.value = '';
+  showTyping();
+  setTimeout(() => {
+    hideTyping();
+    const resp = getResponse(query);
+    addMessage(resp);
+    if (query.toLowerCase().includes('codex')) openCodex();
+  }, 800 + Math.random() * 600);
+}
+
+function quickAsk(q) {
+  document.getElementById('ai-input').value = q;
+  sendAI();
+}
+
+setInterval(() => {
+  const now = new Date();
+  document.getElementById('time').textContent = 
+    now.getHours().toString().padStart(2,'0') + ':' + 
+    now.getMinutes().toString().padStart(2,'0');
+}, 1000);
+</script>
+</body>
+</html>
