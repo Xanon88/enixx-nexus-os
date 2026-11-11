@@ -3,6 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#8a2be2">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Nexus">
+<link rel="manifest" href="manifest.json">
 <title>Enixx OS · The Nexus — Neural Link</title>
 <style>
   :root {
@@ -440,6 +445,15 @@ setInterval(() => {
     now.getHours().toString().padStart(2,'0') + ':' + 
     now.getMinutes().toString().padStart(2,'0');
 }, 1000);
+
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered'))
+      .catch(err => console.log('SW registration failed'));
+  });
+}
 </script>
 </body>
 </html>
