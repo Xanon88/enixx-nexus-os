@@ -1,22 +1,25 @@
 {
-  "name": "Enixx OS · The Nexus",
+  "name": "ENIXX OS · THE NEXUS",
   "short_name": "Nexus",
-  "description": "Interactive Enixx OS · The Nexus hybrid with Neural Link and Codex",
-  "start_url": "/",
+  "description": "Interactive Enixx OS · The Nexus with Neural Link and Codex",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#050510",
-  "theme_color": "#8a2be2",
   "orientation": "portrait",
+  "background_color": "#050510",
+  "theme_color": "#7b2fff",
   "icons": [
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%238a2be2'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white'%3E%E2%AC%A1%3C/text%3E%3C/svg%3E",
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'%3E%3Ccircle cx='96' cy='96' r='80' fill='%237b2fff'/%3E%3Ctext x='96' y='110' text-anchor='middle' fill='white' font-size='70' font-family='sans-serif'%3E⬡%3C/text%3E%3C/svg%3E",
       "sizes": "192x192",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
     },
     {
-      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%238a2be2'/%3E%3Ctext x='50' y='65' font-size='40' text-anchor='middle' fill='white'%3E%E2%AC%A1%3C/text%3E%3C/svg%3E",
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='200' fill='%237b2fff'/%3E%3Ctext x='256' y='290' text-anchor='middle' fill='white' font-size='180' font-family='sans-serif'%3E⬡%3C/text%3E%3C/svg%3E",
       "sizes": "512x512",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
