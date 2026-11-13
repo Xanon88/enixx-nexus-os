@@ -375,7 +375,7 @@
     <div class="card" onclick="openNeuralBank()">
       <h3>Neural Bank</h3>
       <div class="bank-balance">∞</div>
-      <div style="font-size:9px;color:var(--bank);margin-top:2px;">UNLIMITED · ANON BACKED</div>
+      <div style="font-size:9px;color:var(--bank);margin-top:2px;">UNLIMITED · NEX TOKEN</div>
     </div>
   </div>
   <div class="activity">
@@ -406,7 +406,7 @@ const codexEntries = [
   { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 98%. Allows seamless AI interaction and spatial control." },
   { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault." },
   { title: "Codex Access", body: "Knowledge layer unlocked via Neural Link. Contains system lore, security protocols, and operator history." },
-  { title: "Neural Bank", body: "Unlimited crypto access layer. Neural-authenticated. Backed by anonymous distributed consensus. No limits, no traces." }
+  { title: "Neural Bank", body: "Unlimited crypto access layer. Neural-authenticated. Backed by Nex token. No limits, no traces." }
 ];
 
 function showModal(title, body) {
@@ -433,11 +433,11 @@ function openNeuralBank() {
   showModal('Neural Bank', `
     <div style="text-align:center;margin-bottom:12px;">
       <div class="bank-balance">∞</div>
-      <div style="font-size:10px;color:var(--bank);margin-top:4px;">UNLIMITED CRYPTO ACCESS</div>
+      <div style="font-size:10px;color:var(--bank);margin-top:4px;">UNLIMITED NEX TOKEN ACCESS</div>
     </div>
     <div style="font-size:11px;line-height:1.5;">
       Neural Link authenticated.<br>
-      Backed by anonymous distributed consensus.<br>
+      Backed by Nex token.<br>
       No transaction limits. No identity trails.<br><br>
       <span style="color:var(--muted);">Simulated transfer interface ready.</span>
     </div>
@@ -460,7 +460,7 @@ const responses = {
   nexus: "The Nexus is the neural-linked spatial core of Enixx OS.",
   codex: "Codex opened. Knowledge layer available. Select an entry.",
   neural: "Neural Link status: ACTIVE. Synchronization strong. Operator linked.",
-  bank: "Neural Bank online. Unlimited crypto access. Anonymous backing confirmed. No limits active."
+  bank: "Neural Bank online. Unlimited Nex token access. Nex token backing confirmed. No limits active."
 };
 
 function addMessage(text, isUser = false) {
@@ -489,7 +489,7 @@ function hideTyping() {
 
 function getResponse(query) {
   const q = query.toLowerCase();
-  if (q.includes('bank') || q.includes('crypto')) return responses.bank;
+  if (q.includes('bank') || q.includes('crypto') || q.includes('nex')) return responses.bank;
   if (q.includes('status') || q.includes('system')) return responses.status;
   if (q.includes('vault') || q.includes('secure')) return responses.vault;
   if (q.includes('nexus') || q.includes('what is')) return responses.nexus;
