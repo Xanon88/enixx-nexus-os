@@ -20,6 +20,7 @@
     --text: #e8e8ff;
     --muted: #7a7aaa;
     --neural: #00ff9d;
+    --bank: #ffd700;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -308,6 +309,7 @@
   .modal-close { float: right; cursor: pointer; font-size: 18px; color: var(--muted); }
   .codex-entry { margin: 8px 0; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 10px; cursor: pointer; border: 1px solid transparent; }
   .codex-entry:hover { border-color: var(--border); background: rgba(138,43,226,0.15); }
+  .bank-balance { font-size: 28px; font-weight: 800; color: var(--bank); text-shadow: 0 0 15px var(--bank); }
   @keyframes spin { to { transform: rotate(360deg); } }
   .pulse { animation: pulse 2.8s ease-in-out infinite; }
   @keyframes pulse {
@@ -321,18 +323,18 @@
   <div class="scanline"></div>
   <div class="status-bar">
     <span id="time">16:09</span>
-    <span>NEURAL 98%</span>
+    <span>NEURAL 99%</span>
   </div>
-  <div class="date-pill">9. AUGUST<br>11:03</div>
+  <div class="date-pill">13. NOVEMBER<br>20:51</div>
   <div class="header">
-    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'High-tech hybrid quantum system. Neural Link active. Codex synchronized.')">
+    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'High-tech hybrid quantum system. Neural Link active. Neural Bank online. Codex synchronized.')">
       <div class="logo-icon">⬡</div>
       <div>
         <div style="font-size:13px;">ENIXX OS</div>
         <div style="font-size:8px;color:var(--muted);letter-spacing:1px;">THE NEXUS</div>
       </div>
     </div>
-    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 98%<br>Signal: Strong<br>Codex: Online<br>Operator linked.')">NEURAL LINK · ACTIVE</div>
+    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 99%<br>Signal: Optimal<br>Codex: Online<br>Neural Bank: Linked<br>Operator linked.')">NEURAL LINK · ACTIVE</div>
   </div>
   <div class="welcome">
     <h1>WELCOME TO THE NEXUS</h1>
@@ -357,18 +359,19 @@
       <h3>AI Companion · Neural</h3>
       NEXUS AI · LINKED
       <div class="ai-chat" id="ai-chat">
-        <div class="ai-msg ai">Neural Link established. How can I enhance your reality, Operator?</div>
+        <div class="ai-msg ai">Neural Link established. Neural Bank online. How can I enhance your reality, Operator?</div>
       </div>
       <div class="suggestions">
         <div class="suggestion" onclick="quickAsk('System status?')">System status?</div>
         <div class="suggestion" onclick="quickAsk('Open Codex')">Open Codex</div>
-        <div class="suggestion" onclick="quickAsk('Neural Link status')">Neural Link</div>
+        <div class="suggestion" onclick="quickAsk('Neural Bank')">Neural Bank</div>
       </div>
       <input class="ai-input" id="ai-input" placeholder="Ask via Neural Link..." onkeypress="if(event.key==='Enter') sendAI()">
     </div>
-    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active.')">
-      <h3>Spatial Desktop</h3>
-      FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES 5
+    <div class="card" onclick="openNeuralBank()">
+      <h3>Neural Bank</h3>
+      UNLIMITED · ∞ NEX<br>
+      <span style="color:var(--bank);font-size:10px;">BACKED BY ANONYMOUS</span>
     </div>
     <div class="card" onclick="showModal('Secure Vault', 'ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA<br>Neural authenticated.')">
       <h3>Secure Vault</h3>
@@ -376,16 +379,16 @@
     </div>
   </div>
   <div class="activity">
-    <div onclick="showModal('Activity', 'Neural Link synchronized at 20:45:02<br>Status: Active')"><span>Neural Link synchronized</span><span>20:45:02</span></div>
-    <div onclick="showModal('Activity', 'Codex entry accessed at 20:44:11<br>Status: Success')"><span>Codex entry accessed</span><span>20:44:11</span></div>
-    <div onclick="showModal('Activity', 'Secure Workspace accessed at 20:49:32<br>Status: Authenticated')"><span>Secure Workspace accessed</span><span>20:49:32</span></div>
+    <div onclick="showModal('Activity', 'Neural Bank synchronized at 20:51:14<br>Status: Unlimited')"><span>Neural Bank synchronized</span><span>20:51:14</span></div>
+    <div onclick="showModal('Activity', 'Neural Link synchronized at 20:50:22<br>Status: Active')"><span>Neural Link synchronized</span><span>20:50:22</span></div>
+    <div onclick="showModal('Activity', 'Codex entry accessed at 20:49:11<br>Status: Success')"><span>Codex entry accessed</span><span>20:49:11</span></div>
   </div>
   <div class="quick">
     <div onclick="showModal('Quick Launch', 'WORKSPACE opened.')">WORKSPACE</div>
     <div onclick="openCodex()">CODEX</div>
+    <div onclick="openNeuralBank()">NEURAL BANK</div>
     <div onclick="showModal('Quick Launch', 'VAULT accessed. Neural auth confirmed.')">VAULT</div>
     <div onclick="showModal('Quick Launch', 'NETWORK map active.')">NETWORK</div>
-    <div onclick="showModal('Quick Launch', 'SETTINGS panel.')">SETTINGS</div>
     <div onclick="showModal('Quick Launch', 'MORE options.')">MORE</div>
   </div>
 </div>
@@ -400,7 +403,8 @@
 
 <script>
 const codexEntries = [
-  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 98%. Allows seamless AI interaction and spatial control." },
+  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 99%. Allows seamless AI interaction and spatial control." },
+  { title: "Neural Bank System", body: "Unlimited crypto bank backed by Anonymous. Neural-linked transfers. Balance: ∞ NEX. Fully anonymous quantum ledger." },
   { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault." },
   { title: "Codex Access", body: "Knowledge layer unlocked via Neural Link. Contains system lore, security protocols, and operator history." },
   { title: "Security Core", body: "Enixx-Secure active. Deny-by-default capabilities. Post-quantum cryptography enabled." }
@@ -426,19 +430,40 @@ function openCodex() {
   showModal('Codex', body);
 }
 
+function openNeuralBank() {
+  const body = `
+    <div style="text-align:center; margin-bottom:15px;">
+      <div class="bank-balance">∞ NEX</div>
+      <div style="font-size:11px; color:var(--bank); margin-top:4px;">UNLIMITED · BACKED BY ANONYMOUS</div>
+    </div>
+    <div style="font-size:11px; line-height:1.5;">
+      Neural Bank online.<br>
+      Quantum ledger synchronized.<br>
+      Transfers via Neural Link only.<br>
+      Fully anonymous. No traces.<br><br>
+      <strong>Recent activity:</strong><br>
+      • Neural transfer → Vault: Instant<br>
+      • Anonymous mint: Unlimited<br>
+      • Status: Optimal
+    </div>
+  `;
+  showModal('Neural Bank', body);
+}
+
 const responses = {
   default: [
     "Neural Link processing... The Nexus responds.",
     "Synchronized. How else may I assist via the link?",
     "Codex reference located. Proceeding.",
-    "Floating workspace updated through neural pathway.",
+    "Neural Bank status: Unlimited. Backed by Anonymous.",
     "Enixx OS core stable. Neural Link holding."
   ],
-  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (98% sync). All cores nominal.",
+  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (99% sync). Neural Bank: Unlimited.",
   vault: "Secure Vault accessed via Neural Link. Omega clearance confirmed.",
-  nexus: "The Nexus is the neural-linked spatial core of Enixx OS.",
+  nexus: "The Nexus is the neural-linked spatial core of Enixx OS with Neural Bank integration.",
   codex: "Codex opened. Knowledge layer available. Select an entry.",
-  neural: "Neural Link status: ACTIVE. Synchronization strong. Operator linked."
+  neural: "Neural Link status: ACTIVE. Synchronization optimal. Operator linked. Neural Bank online.",
+  bank: "Neural Bank: UNLIMITED ∞ NEX. Backed by Anonymous. Neural-linked transfers active."
 };
 
 function addMessage(text, isUser = false) {
@@ -472,6 +497,7 @@ function getResponse(query) {
   if (q.includes('nexus') || q.includes('what is')) return responses.nexus;
   if (q.includes('codex')) return responses.codex;
   if (q.includes('neural') || q.includes('link')) return responses.neural;
+  if (q.includes('bank') || q.includes('crypto')) return responses.bank;
   return responses.default[Math.floor(Math.random() * responses.default.length)];
 }
 
@@ -487,6 +513,7 @@ function sendAI() {
     const resp = getResponse(query);
     addMessage(resp);
     if (query.toLowerCase().includes('codex')) openCodex();
+    if (query.toLowerCase().includes('bank')) openNeuralBank();
   }, 700 + Math.random() * 500);
 }
 
