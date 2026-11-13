@@ -11,15 +11,15 @@
 <title>Enixx OS · The Nexus — Neural Link</title>
 <style>
   :root {
-    --bg: #050510;
-    --panel: rgba(12, 8, 32, 0.8);
-    --border: #4a1a8a;
-    --accent: #8a2be2;
-    --glow: #a020f0;
-    --cyan: #00e5ff;
-    --text: #e0e0ff;
-    --muted: #8888bb;
-    --cosmic: #ff6b35;
+    --bg: #030308;
+    --panel: rgba(10, 6, 28, 0.75);
+    --border: #6a1aff;
+    --accent: #9d4edd;
+    --glow: #c77dff;
+    --cyan: #00f5ff;
+    --text: #f0f0ff;
+    --muted: #a0a0cc;
+    --cosmic: #ff7b47;
     --neural: #00ff9d;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,51 +29,66 @@
     justify-content: center;
     align-items: flex-start;
     min-height: 100vh;
-    font-family: system-ui, sans-serif;
+    font-family: system-ui, -apple-system, sans-serif;
     color: var(--text);
-    padding: 20px 0;
+    padding: 16px 0;
   }
   .dashboard {
     width: 390px;
     background: var(--bg);
-    border-radius: 24px;
+    border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 0 40px #4a00e0;
+    box-shadow: 0 0 60px #4a00e0, inset 0 0 30px rgba(138,43,226,0.15);
     position: relative;
+    border: 1px solid rgba(138,43,226,0.3);
   }
   .dashboard::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: radial-gradient(ellipse at 20% 10%, rgba(255,107,53,0.08), transparent 50%),
-                radial-gradient(ellipse at 80% 90%, rgba(138,43,226,0.1), transparent 50%);
+    background: 
+      radial-gradient(ellipse at 15% 20%, rgba(255,123,71,0.12), transparent 45%),
+      radial-gradient(ellipse at 85% 80%, rgba(157,78,221,0.15), transparent 45%),
+      linear-gradient(180deg, transparent, rgba(0,0,0,0.4));
     pointer-events: none;
     z-index: 0;
   }
+  .dashboard::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,157,0.03) 2px, rgba(0,255,157,0.03) 4px);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;
+  }
   .status-bar, .date-pill, .header, .welcome, .main-visual, .panels, .activity, .quick {
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
   .status-bar {
-    height: 40px;
+    height: 36px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 16px;
-    font-size: 14px;
+    padding: 0 18px;
+    font-size: 13px;
     font-weight: 600;
+    background: rgba(0,0,0,0.3);
   }
   .date-pill {
-    background: #222;
+    background: rgba(20,10,40,0.7);
+    border: 1px solid var(--border);
     border-radius: 20px;
     padding: 6px 16px;
     text-align: center;
-    font-size: 12px;
-    margin: 0 auto;
+    font-size: 11px;
+    margin: 8px auto;
     width: fit-content;
+    backdrop-filter: blur(10px);
   }
   .header {
-    padding: 12px 16px;
+    padding: 10px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -81,51 +96,54 @@
   .logo {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     font-weight: 700;
     cursor: pointer;
   }
   .logo-icon {
-    width: 32px;
-    height: 32px;
-    background: conic-gradient(#8a2be2, #ff6b35, #00e5ff);
-    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    background: conic-gradient(#9d4edd, #ff7b47, #00f5ff, #9d4edd);
+    border-radius: 10px;
     display: grid;
     place-items: center;
+    box-shadow: 0 0 20px var(--glow);
   }
   .status-pill {
-    background: rgba(0,255,157,0.15);
+    background: rgba(0,255,157,0.12);
     border: 1px solid var(--neural);
-    border-radius: 16px;
-    padding: 4px 10px;
+    border-radius: 18px;
+    padding: 5px 12px;
     font-size: 9px;
     cursor: pointer;
     color: var(--neural);
+    box-shadow: 0 0 12px rgba(0,255,157,0.3);
   }
   .welcome {
     text-align: center;
-    padding: 10px 0;
+    padding: 8px 0 4px;
   }
   .welcome h1 {
-    font-size: 20px;
-    letter-spacing: 1px;
-    text-shadow: 0 0 12px var(--glow);
+    font-size: 22px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px var(--glow), 0 0 40px var(--accent);
+    font-weight: 800;
   }
-  .welcome p { font-size: 11px; color: var(--cyan); }
+  .welcome p { font-size: 11px; color: var(--cyan); letter-spacing: 0.5px; }
   .main-visual {
     position: relative;
-    height: 260px;
+    height: 280px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .central-ring {
-    width: 200px;
-    height: 200px;
+    width: 210px;
+    height: 210px;
     border-radius: 50%;
-    background: radial-gradient(circle, #1a0033, transparent 70%);
-    border: 3px solid #6a00ff;
-    box-shadow: 0 0 50px #6a00ff, inset 0 0 30px #4a00e0;
+    background: radial-gradient(circle, #1a0033 30%, transparent 70%);
+    border: 2px solid #7a00ff;
+    box-shadow: 0 0 60px #6a00ff, inset 0 0 40px #4a00e0, 0 0 100px rgba(138,43,226,0.4);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -133,22 +151,33 @@
     z-index: 2;
     cursor: pointer;
   }
-  .central-ring::before { content:''; position:absolute; inset:-16px; border:1px solid rgba(138,43,226,0.4); border-radius:50%; animation:spin 18s linear infinite; }
-  .central-ring::after { content:''; position:absolute; inset:-32px; border:1px dashed rgba(255,107,53,0.3); border-radius:50%; animation:spin 28s linear infinite reverse; }
+  .central-ring::before { 
+    content:''; position:absolute; inset:-20px; 
+    border: 1px solid rgba(157,78,221,0.5); 
+    border-radius:50%; 
+    animation: spin 20s linear infinite; 
+    box-shadow: 0 0 20px rgba(157,78,221,0.3);
+  }
+  .central-ring::after { 
+    content:''; position:absolute; inset:-38px; 
+    border: 1px dashed rgba(255,123,71,0.4); 
+    border-radius:50%; 
+    animation: spin 32s linear infinite reverse; 
+  }
   .rays {
     position: absolute;
-    width: 300px;
-    height: 300px;
-    background: conic-gradient(from 0deg, transparent 0 8deg, rgba(138,43,226,0.2) 8deg 10deg, transparent 10deg 18deg);
+    width: 320px;
+    height: 320px;
+    background: conic-gradient(from 0deg, transparent 0 6deg, rgba(157,78,221,0.25) 6deg 9deg, transparent 9deg 15deg);
     border-radius: 50%;
-    animation: spin 35s linear infinite;
+    animation: spin 40s linear infinite;
   }
   .left-gauge {
     position: absolute;
-    left: 16px;
-    top: 30px;
-    width: 100px;
-    height: 100px;
+    left: 12px;
+    top: 40px;
+    width: 110px;
+    height: 110px;
     text-align: center;
     font-size: 10px;
     cursor: pointer;
@@ -157,126 +186,137 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(#00e5ff 0% 8%, #4a00e0 8% 100%);
+    background: conic-gradient(#00f5ff 0% 12%, #4a00e0 12% 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    box-shadow: 0 0 25px rgba(0,245,255,0.4);
   }
-  .gauge-circle::before { content:''; position:absolute; inset:10px; background:var(--bg); border-radius:50%; }
-  .gauge-text { position:relative; z-index:1; font-size:24px; font-weight:700; }
+  .gauge-circle::before { content:''; position:absolute; inset:12px; background:var(--bg); border-radius:50%; }
+  .gauge-text { position:relative; z-index:1; font-size:26px; font-weight:800; text-shadow: 0 0 10px var(--cyan); }
   .panels {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 8px;
-    padding: 8px 12px;
+    gap: 10px;
+    padding: 10px 14px;
   }
   .card {
     background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 10px;
+    border: 1px solid rgba(138,43,226,0.4);
+    border-radius: 14px;
+    padding: 12px;
     font-size: 11px;
     cursor: pointer;
-    transition: transform 0.15s, box-shadow 0.15s;
+    transition: transform 0.2s, box-shadow 0.2s;
+    backdrop-filter: blur(12px);
   }
   .card:hover, .card:active {
-    transform: scale(1.02);
-    box-shadow: 0 0 15px var(--glow);
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 0 25px var(--glow), 0 8px 20px rgba(0,0,0,0.4);
   }
-  .card h3 { font-size: 10px; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 6px; }
+  .card h3 { font-size: 10px; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; }
   .ai-card { cursor: default; }
   .ai-chat {
-    max-height: 120px;
+    max-height: 140px;
     overflow-y: auto;
-    margin: 6px 0;
+    margin: 8px 0;
     font-size: 11px;
-    line-height: 1.4;
+    line-height: 1.45;
+    background: rgba(0,0,0,0.25);
+    border-radius: 10px;
+    padding: 6px;
   }
-  .ai-msg { margin: 4px 0; }
+  .ai-msg { margin: 5px 0; }
   .ai-msg.user { color: var(--cyan); }
-  .ai-msg.ai { color: #ddd; }
+  .ai-msg.ai { color: #e0e0ff; }
   .typing { color: var(--muted); font-style: italic; }
   .suggestions {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px;
-    margin-top: 6px;
+    gap: 5px;
+    margin-top: 8px;
   }
   .suggestion {
-    background: rgba(138,43,226,0.3);
+    background: rgba(157,78,221,0.25);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 3px 8px;
+    border-radius: 14px;
+    padding: 4px 10px;
     font-size: 9px;
     cursor: pointer;
   }
-  .suggestion:hover { background: rgba(138,43,226,0.5); }
+  .suggestion:hover { background: rgba(157,78,221,0.45); }
   .ai-input {
     width: 100%;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.5);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 6px 10px;
+    border-radius: 18px;
+    padding: 8px 12px;
     color: var(--text);
     font-size: 11px;
-    margin-top: 6px;
+    margin-top: 8px;
   }
-  .activity, .quick { padding: 8px 12px; }
+  .activity, .quick { padding: 8px 14px; }
   .activity div, .quick div { 
     display: flex; 
     justify-content: space-between; 
-    margin: 4px 0; 
+    margin: 5px 0; 
     font-size: 11px; 
     cursor: pointer;
-    padding: 4px;
-    border-radius: 6px;
+    padding: 6px 8px;
+    border-radius: 8px;
+    background: rgba(0,0,0,0.2);
   }
-  .activity div:hover, .quick div:hover { background: rgba(138,43,226,0.2); }
+  .activity div:hover, .quick div:hover { background: rgba(157,78,221,0.25); }
   .modal {
     display: none;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.75);
     z-index: 100;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(8px);
   }
   .modal.active { display: flex; }
   .modal-content {
     background: var(--panel);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 20px;
-    width: 320px;
-    max-height: 70vh;
+    border-radius: 18px;
+    padding: 22px;
+    width: 340px;
+    max-height: 75vh;
     overflow: auto;
-    box-shadow: 0 0 30px var(--glow);
+    box-shadow: 0 0 40px var(--glow);
+    backdrop-filter: blur(20px);
   }
-  .modal-close { float: right; cursor: pointer; font-size: 18px; }
-  .codex-entry { margin: 8px 0; padding: 8px; background: rgba(0,0,0,0.3); border-radius: 8px; cursor: pointer; }
-  .codex-entry:hover { background: rgba(138,43,226,0.2); }
+  .modal-close { float: right; cursor: pointer; font-size: 20px; }
+  .codex-entry { margin: 10px 0; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 10px; cursor: pointer; border: 1px solid rgba(138,43,226,0.3); }
+  .codex-entry:hover { background: rgba(157,78,221,0.25); }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .pulse { animation: pulse 2.5s ease-in-out infinite; }
-  @keyframes pulse { 0%,100% { box-shadow: 0 0 40px #6a00ff; } 50% { box-shadow: 0 0 70px #a020f0; } }
+  .pulse { animation: pulse 2.8s ease-in-out infinite; }
+  @keyframes pulse { 
+    0%,100% { box-shadow: 0 0 50px #6a00ff, inset 0 0 30px #4a00e0; } 
+    50% { box-shadow: 0 0 80px #c77dff, inset 0 0 50px #6a00ff; } 
+  }
 </style>
 </head>
 <body>
 <div class="dashboard">
   <div class="status-bar">
-    <span id="time">16:09</span>
-    <span>45%</span>
+    <span id="time">18:14</span>
+    <span id="battery">48%</span>
   </div>
-  <div class="date-pill">9. august<br>11:03</div>
+  <div class="date-pill">13. november<br>18:14</div>
   <div class="header">
-    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'Hybrid quantum operating system with Neural Link integration and Codex knowledge layer.')">
+    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'High-tech hybrid quantum operating system with Neural Link integration and Codex knowledge layer. Reality enhancement active.')">
       <div class="logo-icon">⬡</div>
       <div>
         <div>ENIXX OS</div>
         <div style="font-size:9px;color:var(--muted);">THE NEXUS</div>
       </div>
     </div>
-    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 98%<br>Signal strength: Strong<br>Codex access: Unlocked<br>Operator linked.')">NEURAL LINK: ACTIVE</div>
+    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 99%<br>Signal strength: Optimal<br>Codex access: Unlocked<br>Operator linked. Quantum pathways stable.')">NEURAL LINK: ACTIVE</div>
   </div>
   <div class="welcome">
     <h1>WELCOME TO THE NEXUS</h1>
@@ -284,24 +324,24 @@
   </div>
   <div class="main-visual">
     <div class="rays"></div>
-    <div class="left-gauge" onclick="showModal('PS Q 6GR Gauge', 'Current quantum load: 2%<br>Neural Link load: Minimal<br>All cores stable.')">
+    <div class="left-gauge" onclick="showModal('PS Q 6GR Gauge', 'Current quantum load: 3%<br>Neural Link load: Minimal<br>All cores stable. Holographic rendering optimal.')">
       <div>PS Q 6GR</div>
-      <div class="gauge-circle"><div class="gauge-text">2%</div></div>
+      <div class="gauge-circle"><div class="gauge-text" id="gauge">3%</div></div>
     </div>
-    <div class="central-ring pulse" onclick="showModal('Nexus Core', 'Digital signature: 88888888<br>Central nexus ring active.<br>Neural Link synchronized.')">
-      <div style="font-size:26px;font-weight:700;letter-spacing:1px;">88888888</div>
+    <div class="central-ring pulse" onclick="showModal('Nexus Core', 'Digital signature: 88888888<br>Central nexus ring active.<br>Neural Link synchronized at 99%.<br>Holographic core online.')">
+      <div style="font-size:28px;font-weight:800;letter-spacing:2px;text-shadow:0 0 15px var(--glow);">88888888</div>
     </div>
   </div>
   <div class="panels">
-    <div class="card" onclick="showModal('System Overview', 'CPU: 52%<br>GPU: 41%<br>NPU: 87%<br>RAM: 69%<br><br>QUANTUM LOAD: LOW<br>Neural Link: Stable')">
+    <div class="card" onclick="showModal('System Overview', 'CPU: 48%<br>GPU: 37%<br>NPU: 91%<br>RAM: 62%<br><br>QUANTUM LOAD: LOW<br>Neural Link: Stable<br>Holographic layer: Active')">
       <h3>SYSTEM OVERVIEW</h3>
-      CPU 52% · GPU 41%<br>NPU 87% · RAM 69%<br><span style="color:#00e5ff;">QUANTUM LOAD LOW</span>
+      CPU <span id="cpu">48</span>% · GPU <span id="gpu">37</span>%<br>NPU <span id="npu">91</span>% · RAM <span id="ram">62</span>%<br><span style="color:#00f5ff;">QUANTUM LOAD LOW</span>
     </div>
     <div class="card ai-card" id="ai-card">
       <h3>AI COMPANION · NEURAL</h3>
       NEXUS AI · LINKED
       <div class="ai-chat" id="ai-chat">
-        <div class="ai-msg ai">Neural Link established. How can I enhance your reality, Operator?</div>
+        <div class="ai-msg ai">Neural Link established at 99%. How can I enhance your reality, Operator?</div>
       </div>
       <div class="suggestions">
         <div class="suggestion" onclick="quickAsk('System status?')">System status?</div>
@@ -310,27 +350,27 @@
       </div>
       <input class="ai-input" id="ai-input" placeholder="Ask via Neural Link..." onkeypress="if(event.key==='Enter') sendAI()">
     </div>
-    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active.')">
+    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active.<br>Holographic islands synchronized.')">
       <h3>SPATIAL DESKTOP</h3>
       FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES 5
     </div>
-    <div class="card" onclick="showModal('Secure Vault', 'ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA<br>Neural authenticated.')">
+    <div class="card" onclick="showModal('Secure Vault', 'ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA<br>Neural authenticated.<br>Post-quantum vault sealed.')">
       <h3>SECURE VAULT</h3>
       ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA
     </div>
   </div>
   <div class="activity">
-    <div onclick="showModal('Activity', 'Neural Link synchronized at 20:45:02<br>Status: Active')"><span>Neural Link synchronized</span><span>20:45:02</span></div>
-    <div onclick="showModal('Activity', 'Codex entry accessed at 20:44:11<br>Status: Success')"><span>Codex entry accessed</span><span>20:44:11</span></div>
-    <div onclick="showModal('Activity', 'Secure Workspace accessed at 20:49:32<br>Status: Authenticated')"><span>Secure Workspace accessed</span><span>20:49:32</span></div>
+    <div onclick="showModal('Activity', 'Neural Link synchronized at 18:14:22<br>Status: Optimal')"><span>Neural Link synchronized</span><span>18:14:22</span></div>
+    <div onclick="showModal('Activity', 'Codex entry accessed at 18:12:45<br>Status: Success')"><span>Codex entry accessed</span><span>18:12:45</span></div>
+    <div onclick="showModal('Activity', 'Secure Workspace accessed at 18:10:11<br>Status: Authenticated')"><span>Secure Workspace accessed</span><span>18:10:11</span></div>
   </div>
   <div class="quick">
-    <div onclick="showModal('Quick Launch', 'WORKSPACE opened.')">WORKSPACE</div>
+    <div onclick="showModal('Quick Launch', 'WORKSPACE opened. Spatial layer active.')">WORKSPACE</div>
     <div onclick="openCodex()">CODEX</div>
     <div onclick="showModal('Quick Launch', 'VAULT accessed. Neural auth confirmed.')">VAULT</div>
-    <div onclick="showModal('Quick Launch', 'NETWORK map active.')">NETWORK</div>
-    <div onclick="showModal('Quick Launch', 'SETTINGS panel.')">SETTINGS</div>
-    <div onclick="showModal('Quick Launch', 'MORE options.')">MORE</div>
+    <div onclick="showModal('Quick Launch', 'NETWORK map active. Quantum links online.')">NETWORK</div>
+    <div onclick="showModal('Quick Launch', 'SETTINGS panel. Configure Enixx OS.')">SETTINGS</div>
+    <div onclick="showModal('Quick Launch', 'MORE options available.')">MORE</div>
   </div>
 </div>
 
@@ -338,14 +378,22 @@
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal()">&times;</span>
     <h3 id="modal-title"></h3>
-    <div id="modal-body" style="margin-top:10px; line-height:1.4;"></div>
+    <div id="modal-body" style="margin-top:10px; line-height:1.5;"></div>
   </div>
 </div>
 
 <script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered'))
+      .catch(err => console.log('SW registration failed'));
+  });
+}
+
 const codexEntries = [
-  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 98%. Allows seamless AI interaction and spatial control." },
-  { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault." },
+  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 99%. Allows seamless AI interaction and spatial control." },
+  { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault. Holographic layer enabled." },
   { title: "Codex Access", body: "Knowledge layer unlocked via Neural Link. Contains system lore, security protocols, and operator history." },
   { title: "Security Core", body: "Enixx-Secure active. Deny-by-default capabilities. Post-quantum cryptography enabled." }
 ];
@@ -363,7 +411,7 @@ document.getElementById('modal').addEventListener('click', function(e) {
 });
 
 function openCodex() {
-  let body = '<div style="margin-bottom:10px;">CODEX · Neural Linked Knowledge Layer</div>';
+  let body = '<div style="margin-bottom:12px; font-weight:600;">CODEX · Neural Linked Knowledge Layer</div>';
   codexEntries.forEach(entry => {
     body += `<div class="codex-entry" onclick="showModal('${entry.title}', '${entry.body}')">${entry.title}</div>`;
   });
@@ -372,17 +420,17 @@ function openCodex() {
 
 const responses = {
   default: [
-    "Neural Link processing... The Nexus responds.",
-    "Synchronized. How else may I assist via the link?",
-    "Codex reference located. Proceeding.",
+    "Neural Link processing... The Nexus responds with holographic clarity.",
+    "Synchronized at 99%. How else may I assist via the link?",
+    "Codex reference located. Proceeding through quantum pathways.",
     "Floating workspace updated through neural pathway.",
-    "Enixx OS core stable. Neural Link holding."
+    "Enixx OS core stable. Neural Link holding optimally."
   ],
-  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (98% sync). All cores nominal.",
-  vault: "Secure Vault accessed via Neural Link. Omega clearance confirmed.",
-  nexus: "The Nexus is the neural-linked spatial core of Enixx OS.",
+  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (99% sync). All cores nominal. Holographic layer active.",
+  vault: "Secure Vault accessed via Neural Link. Omega clearance confirmed. Post-quantum seals verified.",
+  nexus: "The Nexus is the neural-linked spatial core of Enixx OS with holographic reality enhancement.",
   codex: "Codex opened. Knowledge layer available. Select an entry.",
-  neural: "Neural Link status: ACTIVE. Synchronization strong. Operator linked."
+  neural: "Neural Link status: ACTIVE. Synchronization optimal at 99%. Operator linked."
 };
 
 function addMessage(text, isUser = false) {
@@ -431,7 +479,7 @@ function sendAI() {
     const resp = getResponse(query);
     addMessage(resp);
     if (query.toLowerCase().includes('codex')) openCodex();
-  }, 800 + Math.random() * 600);
+  }, 700 + Math.random() * 500);
 }
 
 function quickAsk(q) {
@@ -444,16 +492,17 @@ setInterval(() => {
   document.getElementById('time').textContent = 
     now.getHours().toString().padStart(2,'0') + ':' + 
     now.getMinutes().toString().padStart(2,'0');
-}, 1000);
-
-// Register service worker for PWA
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
-      .then(reg => console.log('SW registered'))
-      .catch(err => console.log('SW registration failed'));
-  });
-}
+  // Live metric fluctuations for high-tech feel
+  const cpu = 45 + Math.floor(Math.random()*10);
+  const gpu = 34 + Math.floor(Math.random()*8);
+  const npu = 88 + Math.floor(Math.random()*6);
+  const ram = 58 + Math.floor(Math.random()*8);
+  document.getElementById('cpu').textContent = cpu;
+  document.getElementById('gpu').textContent = gpu;
+  document.getElementById('npu').textContent = npu;
+  document.getElementById('ram').textContent = ram;
+  document.getElementById('gauge').textContent = (2 + Math.floor(Math.random()*3)) + '%';
+}, 3000);
 </script>
 </body>
 </html>
