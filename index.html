@@ -3,25 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#00f0ff">
+<meta name="theme-color" content="#00c8ff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Nexus">
 <link rel="manifest" href="manifest.json">
-<title>ENIXX OS · THE NEXUS — Superior AI</title>
+<title>ENIXX OS · THE NEXUS — Jarvis Core</title>
 <style>
   :root {
-    --bg: #010104;
-    --panel: rgba(4, 8, 20, 0.8);
-    --border: rgba(0, 240, 255, 0.3);
-    --accent: #00f0ff;
+    --bg: #02060e;
+    --panel: rgba(4, 12, 28, 0.72);
+    --border: rgba(0, 200, 255, 0.35);
+    --accent: #00c8ff;
     --glow: #00f0ff;
     --cyan: #00f0ff;
-    --text: #e0f7ff;
-    --muted: #6a8aaa;
+    --text: #e0f4ff;
+    --muted: #6a90b0;
     --neural: #00ff9d;
     --bank: #00ff9d;
-    --jarvis: #4fc3f7;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -39,25 +38,25 @@
     background: var(--bg);
     border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 0 80px rgba(0,240,255,0.4), 0 0 160px rgba(0,100,255,0.2);
+    box-shadow: 0 0 70px rgba(0,200,255,0.45), 0 0 140px rgba(0,240,255,0.12);
     position: relative;
-    border: 1px solid rgba(0,240,255,0.25);
+    border: 1px solid rgba(0,200,255,0.25);
   }
   .dashboard::before {
     content: '';
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse at 20% 15%, rgba(0,240,255,0.12) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 85%, rgba(0,100,255,0.08) 0%, transparent 45%),
-      linear-gradient(180deg, #0a1020 0%, #010104 100%);
+      radial-gradient(ellipse at 20% 15%, rgba(0,200,255,0.14) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 85%, rgba(0,255,157,0.06) 0%, transparent 45%),
+      linear-gradient(180deg, #041018 0%, #02060e 100%);
     pointer-events: none;
     z-index: 0;
   }
   .scanline {
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.02) 2px, rgba(0,240,255,0.02) 4px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.012) 2px, rgba(0,240,255,0.012) 4px);
     pointer-events: none;
     z-index: 2;
     opacity: 0.5;
@@ -77,7 +76,7 @@
     letter-spacing: 0.5px;
   }
   .date-pill {
-    background: rgba(10,20,40,0.9);
+    background: rgba(4,16,32,0.9);
     border: 1px solid var(--border);
     border-radius: 20px;
     padding: 5px 18px;
@@ -103,15 +102,15 @@
   .logo-icon {
     width: 34px;
     height: 34px;
-    background: conic-gradient(#00f0ff, #4fc3f7, #00ff9d, #00f0ff);
+    background: conic-gradient(#00c8ff, #00ff9d, #00c8ff);
     border-radius: 10px;
     display: grid;
     place-items: center;
-    box-shadow: 0 0 20px rgba(0,240,255,0.6);
-    animation: spin 20s linear infinite;
+    box-shadow: 0 0 20px rgba(0,200,255,0.5);
+    animation: spin 18s linear infinite;
   }
   .status-pill {
-    background: rgba(0,255,157,0.12);
+    background: rgba(0,255,157,0.1);
     border: 1px solid var(--neural);
     border-radius: 16px;
     padding: 5px 12px;
@@ -119,16 +118,16 @@
     cursor: pointer;
     color: var(--neural);
     letter-spacing: 0.5px;
-    box-shadow: 0 0 12px rgba(0,255,157,0.25);
+    box-shadow: 0 0 12px rgba(0,255,157,0.2);
   }
   .welcome {
     text-align: center;
     padding: 8px 0 4px;
   }
   .welcome h1 {
-    font-size: 18px;
+    font-size: 17px;
     letter-spacing: 2px;
-    text-shadow: 0 0 20px var(--glow);
+    text-shadow: 0 0 18px var(--glow);
     font-weight: 800;
   }
   .welcome p { font-size: 10px; color: var(--cyan); letter-spacing: 1px; margin-top: 2px; }
@@ -143,9 +142,9 @@
     width: 190px;
     height: 190px;
     border-radius: 50%;
-    background: radial-gradient(circle, #001a33 30%, transparent 70%);
-    border: 2px solid #00f0ff;
-    box-shadow: 0 0 60px #00f0ff, inset 0 0 40px #0080ff;
+    background: radial-gradient(circle, #001428 30%, transparent 70%);
+    border: 2px solid #00c8ff;
+    box-shadow: 0 0 50px #00c8ff, inset 0 0 40px #0080c0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -157,9 +156,9 @@
     content: '';
     position: absolute;
     inset: -18px;
-    border: 1px solid rgba(0,240,255,0.5);
+    border: 1px solid rgba(0,200,255,0.5);
     border-radius: 50%;
-    animation: spin 16s linear infinite;
+    animation: spin 14s linear infinite;
   }
   .central-ring::after {
     content: '';
@@ -167,15 +166,15 @@
     inset: -36px;
     border: 1px dashed rgba(0,240,255,0.3);
     border-radius: 50%;
-    animation: spin 26s linear infinite reverse;
+    animation: spin 24s linear infinite reverse;
   }
   .rays {
     position: absolute;
     width: 320px;
     height: 320px;
-    background: conic-gradient(from 0deg, transparent 0 10deg, rgba(0,240,255,0.15) 10deg 12deg, transparent 12deg 22deg);
+    background: conic-gradient(from 0deg, transparent 0 10deg, rgba(0,200,255,0.12) 10deg 12deg, transparent 12deg 22deg);
     border-radius: 50%;
-    animation: spin 40s linear infinite;
+    animation: spin 36s linear infinite;
   }
   .left-gauge {
     position: absolute;
@@ -191,7 +190,7 @@
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(#00f0ff 0% 8%, #001a2a 8% 100%);
+    background: conic-gradient(#00f0ff 0% 8%, #001428 8% 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -224,8 +223,8 @@
   }
   .card:hover, .card:active {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0,240,255,0.35);
-    border-color: rgba(0,240,255,0.6);
+    box-shadow: 0 8px 25px rgba(0,200,255,0.28);
+    border-color: rgba(0,200,255,0.55);
   }
   .card h3 {
     font-size: 9px;
@@ -234,16 +233,13 @@
     margin-bottom: 6px;
     text-transform: uppercase;
   }
-  .ai-card { cursor: default; border-color: rgba(0,240,255,0.4); }
+  .ai-card { cursor: default; }
   .ai-chat {
-    max-height: 110px;
+    max-height: 100px;
     overflow-y: auto;
     margin: 6px 0;
     font-size: 11px;
     line-height: 1.45;
-    background: rgba(0,20,40,0.4);
-    border-radius: 10px;
-    padding: 4px;
   }
   .ai-msg { margin: 3px 0; }
   .ai-msg.user { color: var(--cyan); }
@@ -256,7 +252,7 @@
     margin-top: 6px;
   }
   .suggestion {
-    background: rgba(0,240,255,0.15);
+    background: rgba(0,200,255,0.18);
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 3px 8px;
@@ -264,7 +260,7 @@
     cursor: pointer;
     transition: background 0.15s;
   }
-  .suggestion:hover { background: rgba(0,240,255,0.3); }
+  .suggestion:hover { background: rgba(0,200,255,0.32); }
   .ai-input {
     width: 100%;
     background: rgba(0,0,0,0.5);
@@ -288,7 +284,7 @@
     border-radius: 8px;
     transition: background 0.15s;
   }
-  .activity div:hover, .quick div:hover { background: rgba(0,240,255,0.15); }
+  .activity div:hover, .quick div:hover { background: rgba(0,200,255,0.12); }
   .modal {
     display: none;
     position: fixed;
@@ -301,7 +297,7 @@
   }
   .modal.active { display: flex; }
   .modal-content {
-    background: rgba(8,12,28,0.95);
+    background: rgba(4,12,28,0.95);
     border: 1px solid var(--border);
     border-radius: 18px;
     padding: 20px;
@@ -312,13 +308,13 @@
   }
   .modal-close { float: right; cursor: pointer; font-size: 18px; color: var(--muted); }
   .codex-entry { margin: 8px 0; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 10px; cursor: pointer; border: 1px solid transparent; }
-  .codex-entry:hover { border-color: var(--border); background: rgba(0,240,255,0.15); }
+  .codex-entry:hover { border-color: var(--border); background: rgba(0,200,255,0.12); }
   .bank-balance { font-size: 22px; font-weight: 800; color: var(--bank); text-shadow: 0 0 12px rgba(0,255,157,0.4); }
   @keyframes spin { to { transform: rotate(360deg); } }
-  .pulse { animation: pulse 2.8s ease-in-out infinite; }
+  .pulse { animation: pulse 2.6s ease-in-out infinite; }
   @keyframes pulse {
-    0%,100% { box-shadow: 0 0 50px #00f0ff, inset 0 0 25px #0080ff; }
-    50% { box-shadow: 0 0 90px #4fc3f7, inset 0 0 40px #00f0ff; }
+    0%,100% { box-shadow: 0 0 45px #00c8ff, inset 0 0 25px #0080c0; }
+    50% { box-shadow: 0 0 80px #00f0ff, inset 0 0 40px #00c8ff; }
   }
 </style>
 </head>
@@ -327,52 +323,52 @@
   <div class="scanline"></div>
   <div class="status-bar">
     <span id="time">16:09</span>
-    <span>NEURAL 99%</span>
+    <span>JARVIS 98%</span>
   </div>
-  <div class="date-pill">13. NOVEMBER<br>21:10</div>
+  <div class="date-pill">9. AUGUST<br>11:03</div>
   <div class="header">
-    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'Superior AI operating system. Nexus AI online — a better version of Grok. Neural Link active. Codex synchronized. Neural Bank online.')">
+    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'Jarvis-class neural core online. All systems nominal. Operator linked.')">
       <div class="logo-icon">⬡</div>
       <div>
         <div style="font-size:13px;">ENIXX OS</div>
         <div style="font-size:8px;color:var(--muted);letter-spacing:1px;">THE NEXUS</div>
       </div>
     </div>
-    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 99%<br>Signal: Optimal<br>Codex: Online<br>Neural Bank: Linked<br>Nexus AI: Superior')">NEURAL LINK · ACTIVE</div>
+    <div class="status-pill" onclick="showModal('Neural Link Status', 'JARVIS CORE: ACTIVE<br>Synchronization: 98%<br>Signal: Strong<br>Codex: Online<br>Neural Bank: Linked')">JARVIS · ACTIVE</div>
   </div>
   <div class="welcome">
     <h1>WELCOME TO THE NEXUS</h1>
-    <p>>> NEXUS AI · SUPERIOR INTELLIGENCE</p>
+    <p>>> JARVIS-CLASS NEURAL SYSTEM</p>
   </div>
   <div class="main-visual">
     <div class="rays"></div>
-    <div class="left-gauge" onclick="showModal('PS Q 6GR Gauge', 'Quantum load: 2%<br>Neural Link load: Minimal<br>All cores stable. AI processing optimal.')">
+    <div class="left-gauge" onclick="showModal('PS Q 6GR Gauge', 'Quantum load: 2%<br>Neural Link load: Minimal<br>All cores stable.')">
       <div class="gauge-circle"><div class="gauge-text">2%</div></div>
       <div style="margin-top:3px;color:var(--muted);">PS Q 6GR</div>
     </div>
-    <div class="central-ring pulse" onclick="showModal('Nexus Core', 'Digital signature: 88888888<br>Central nexus ring active.<br>Nexus AI core synchronized.<br>JARVIS-class intelligence online.')">
+    <div class="central-ring pulse" onclick="showModal('Nexus Core', 'Digital signature: 88888888<br>Central nexus ring active.<br>Jarvis core synchronized.')">
       <div style="font-size:24px;font-weight:800;letter-spacing:1px;">88888888</div>
     </div>
   </div>
   <div class="panels">
-    <div class="card" onclick="showModal('System Overview', 'CPU: 48%<br>GPU: 37%<br>NPU: 91%<br>RAM: 62%<br><br>QUANTUM LOAD: LOW<br>Neural Link: Stable<br>Nexus AI: Optimal')">
+    <div class="card" onclick="showModal('System Overview', 'CPU: 52%<br>GPU: 41%<br>NPU: 87%<br>RAM: 69%<br><br>QUANTUM LOAD: LOW<br>Jarvis Core: Stable')">
       <h3>System Overview</h3>
-      CPU 48% · GPU 37%<br>NPU 91% · RAM 62%<br><span style="color:#00f0ff;font-size:10px;">QUANTUM LOAD LOW</span>
+      CPU 52% · GPU 41%<br>NPU 87% · RAM 69%<br><span style="color:#00f0ff;font-size:10px;">QUANTUM LOAD LOW</span>
     </div>
     <div class="card ai-card" id="ai-card">
-      <h3>Nexus AI · Superior</h3>
-      JARVIS-CLASS · ONLINE
+      <h3>Jarvis AI · Neural</h3>
+      NEXUS JARVIS · ONLINE
       <div class="ai-chat" id="ai-chat">
-        <div class="ai-msg ai">Good evening, Operator. Nexus AI is online — a better version of Grok. How may I assist?</div>
+        <div class="ai-msg ai">Jarvis core online. How may I assist you, Operator?</div>
       </div>
       <div class="suggestions">
         <div class="suggestion" onclick="quickAsk('System status?')">System status?</div>
         <div class="suggestion" onclick="quickAsk('Open Codex')">Open Codex</div>
         <div class="suggestion" onclick="quickAsk('Neural Bank')">Neural Bank</div>
       </div>
-      <input class="ai-input" id="ai-input" placeholder="Speak or type, Operator..." onkeypress="if(event.key==='Enter') sendAI()">
+      <input class="ai-input" id="ai-input" placeholder="Speak to Jarvis..." onkeypress="if(event.key==='Enter') sendAI()">
     </div>
-    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active. AI-managed.')">
+    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active.')">
       <h3>Spatial Desktop</h3>
       FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES 5
     </div>
@@ -383,12 +379,12 @@
     </div>
   </div>
   <div class="activity">
-    <div onclick="showModal('Activity', 'Nexus AI core optimized at 21:10:44<br>Status: Superior')"><span>Nexus AI core optimized</span><span>21:10:44</span></div>
-    <div onclick="showModal('Activity', 'Neural Bank sync at 20:51:14<br>Status: Unlimited access confirmed')"><span>Neural Bank synchronized</span><span>20:51:14</span></div>
+    <div onclick="showModal('Activity', 'Jarvis core synchronized at 20:51:14<br>Status: Online')"><span>Jarvis core synchronized</span><span>20:51:14</span></div>
     <div onclick="showModal('Activity', 'Codex entry accessed at 20:44:11<br>Status: Success')"><span>Codex entry accessed</span><span>20:44:11</span></div>
+    <div onclick="showModal('Activity', 'Secure Workspace accessed at 20:49:32<br>Status: Authenticated')"><span>Secure Workspace accessed</span><span>20:49:32</span></div>
   </div>
   <div class="quick">
-    <div onclick="showModal('Quick Launch', 'WORKSPACE opened. AI-managed.')">WORKSPACE</div>
+    <div onclick="showModal('Quick Launch', 'WORKSPACE opened.')">WORKSPACE</div>
     <div onclick="openCodex()">CODEX</div>
     <div onclick="openNeuralBank()">BANK</div>
     <div onclick="showModal('Quick Launch', 'NETWORK map active.')">NETWORK</div>
@@ -407,10 +403,10 @@
 
 <script>
 const codexEntries = [
-  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 99%. Allows seamless AI interaction and spatial control." },
-  { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault. Powered by superior Nexus AI." },
+  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 98%. Allows seamless AI interaction and spatial control." },
+  { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault." },
   { title: "Codex Access", body: "Knowledge layer unlocked via Neural Link. Contains system lore, security protocols, and operator history." },
-  { title: "Neural Bank", body: "Unlimited crypto access layer. Neural-authenticated. Backed by NEX Token. No limits, no traces." }
+  { title: "Neural Bank", body: "Unlimited crypto access layer. Neural-authenticated. Backed by Nex token. No limits, no traces." }
 ];
 
 function showModal(title, body) {
@@ -453,17 +449,17 @@ function openNeuralBank() {
 
 const responses = {
   default: [
-    "Understood, Operator. Processing through superior neural pathways.",
-    "At your service. How else may I elevate your experience?",
-    "Codex reference located. Proceeding with optimal efficiency.",
-    "Spatial workspace adjusted. Reality enhanced.",
-    "Nexus AI core stable. Superior to previous iterations."
+    "Processing request through Jarvis core...",
+    "Understood. How else may I assist, Operator?",
+    "Codex reference located. Proceeding.",
+    "Spatial workspace updated.",
+    "Nexus core stable. Jarvis standing by."
   ],
-  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (99% sync). Nexus AI: Optimal. All cores nominal.",
-  vault: "Secure Vault accessed via Neural Link. Omega clearance confirmed.",
-  nexus: "The Nexus is the neural-linked spatial core of Enixx OS, powered by superior AI.",
-  codex: "Codex opened. Knowledge layer available. Select an entry.",
-  neural: "Neural Link status: ACTIVE. Synchronization optimal. Operator linked. Nexus AI ready.",
+  status: "System status: QUANTUM LOAD LOW. Jarvis Core: ACTIVE (98% sync). All systems nominal.",
+  vault: "Secure Vault accessed. Neural authentication confirmed.",
+  nexus: "The Nexus is the neural-linked spatial core of Enixx OS.",
+  codex: "Codex opened. Knowledge layer available.",
+  neural: "Neural Link status: ACTIVE. Synchronization strong. Operator linked.",
   bank: "Neural Bank online. Unlimited access. Backed by Nex token. No limits active."
 };
 
@@ -471,7 +467,7 @@ function addMessage(text, isUser = false) {
   const chat = document.getElementById('ai-chat');
   const msg = document.createElement('div');
   msg.className = 'ai-msg ' + (isUser ? 'user' : 'ai');
-  msg.textContent = (isUser ? 'You: ' : 'Nexus AI: ') + text;
+  msg.textContent = (isUser ? 'You: ' : 'Jarvis: ') + text;
   chat.appendChild(msg);
   chat.scrollTop = chat.scrollHeight;
 }
@@ -481,7 +477,7 @@ function showTyping() {
   const typing = document.createElement('div');
   typing.className = 'ai-msg typing';
   typing.id = 'typing';
-  typing.textContent = 'Nexus AI analyzing...';
+  typing.textContent = 'Jarvis processing...';
   chat.appendChild(typing);
   chat.scrollTop = chat.scrollHeight;
 }
@@ -525,7 +521,7 @@ function quickAsk(q) {
 
 function showToast(msg) {
   const t = document.createElement('div');
-  t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(0,240,255,0.9);color:#000;padding:8px 16px;border-radius:20px;font-size:12px;z-index:200;';
+  t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:rgba(0,200,255,0.9);color:#000;padding:8px 16px;border-radius:20px;font-size:12px;z-index:200;';
   t.textContent = msg;
   document.body.appendChild(t);
   setTimeout(() => t.remove(), 1800);
