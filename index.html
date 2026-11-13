@@ -2,24 +2,23 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#8a2be2">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#7b2fff">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Nexus">
 <link rel="manifest" href="manifest.json">
-<title>Enixx OS · The Nexus — Neural Link</title>
+<title>ENIXX OS · THE NEXUS — Neural Link</title>
 <style>
   :root {
     --bg: #030308;
-    --panel: rgba(10, 6, 28, 0.75);
-    --border: #6a1aff;
-    --accent: #9d4edd;
-    --glow: #c77dff;
-    --cyan: #00f5ff;
-    --text: #f0f0ff;
-    --muted: #a0a0cc;
-    --cosmic: #ff7b47;
+    --panel: rgba(8, 4, 24, 0.75);
+    --border: rgba(123, 47, 255, 0.35);
+    --accent: #8a2be2;
+    --glow: #a020f0;
+    --cyan: #00f0ff;
+    --text: #e8e8ff;
+    --muted: #7a7aaa;
     --neural: #00ff9d;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -38,57 +37,56 @@
     background: var(--bg);
     border-radius: 28px;
     overflow: hidden;
-    box-shadow: 0 0 60px #4a00e0, inset 0 0 30px rgba(138,43,226,0.15);
+    box-shadow: 0 0 60px rgba(138,43,226,0.6), 0 0 120px rgba(0,240,255,0.15);
     position: relative;
-    border: 1px solid rgba(138,43,226,0.3);
+    border: 1px solid rgba(123,47,255,0.2);
   }
   .dashboard::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: 
-      radial-gradient(ellipse at 15% 20%, rgba(255,123,71,0.12), transparent 45%),
-      radial-gradient(ellipse at 85% 80%, rgba(157,78,221,0.15), transparent 45%),
-      linear-gradient(180deg, transparent, rgba(0,0,0,0.4));
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 15% 10%, rgba(123,47,255,0.18) 0%, transparent 50%),
+      radial-gradient(ellipse at 85% 90%, rgba(0,240,255,0.08) 0%, transparent 45%),
+      linear-gradient(180deg, #0a0520 0%, #030308 100%);
     pointer-events: none;
     z-index: 0;
   }
-  .dashboard::after {
-    content: '';
+  .scanline {
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,157,0.03) 2px, rgba(0,255,157,0.03) 4px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,240,255,0.015) 2px, rgba(0,240,255,0.015) 4px);
     pointer-events: none;
-    z-index: 1;
-    opacity: 0.6;
+    z-index: 2;
+    opacity: 0.4;
   }
   .status-bar, .date-pill, .header, .welcome, .main-visual, .panels, .activity, .quick {
     position: relative;
-    z-index: 2;
+    z-index: 3;
   }
   .status-bar {
-    height: 36px;
+    height: 42px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 18px;
     font-size: 13px;
     font-weight: 600;
-    background: rgba(0,0,0,0.3);
+    letter-spacing: 0.5px;
   }
   .date-pill {
-    background: rgba(20,10,40,0.7);
+    background: rgba(20,10,40,0.9);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 6px 16px;
+    padding: 5px 18px;
     text-align: center;
     font-size: 11px;
-    margin: 8px auto;
+    margin: 0 auto;
     width: fit-content;
     backdrop-filter: blur(10px);
   }
   .header {
-    padding: 10px 16px;
+    padding: 14px 16px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -101,49 +99,51 @@
     cursor: pointer;
   }
   .logo-icon {
-    width: 36px;
-    height: 36px;
-    background: conic-gradient(#9d4edd, #ff7b47, #00f5ff, #9d4edd);
+    width: 34px;
+    height: 34px;
+    background: conic-gradient(#8a2be2, #00f0ff, #ff6b35, #8a2be2);
     border-radius: 10px;
     display: grid;
     place-items: center;
-    box-shadow: 0 0 20px var(--glow);
+    box-shadow: 0 0 20px rgba(138,43,226,0.6);
+    animation: spin 20s linear infinite;
   }
   .status-pill {
     background: rgba(0,255,157,0.12);
     border: 1px solid var(--neural);
-    border-radius: 18px;
+    border-radius: 16px;
     padding: 5px 12px;
     font-size: 9px;
     cursor: pointer;
     color: var(--neural);
-    box-shadow: 0 0 12px rgba(0,255,157,0.3);
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 12px rgba(0,255,157,0.25);
   }
   .welcome {
     text-align: center;
     padding: 8px 0 4px;
   }
   .welcome h1 {
-    font-size: 22px;
+    font-size: 18px;
     letter-spacing: 2px;
-    text-shadow: 0 0 20px var(--glow), 0 0 40px var(--accent);
+    text-shadow: 0 0 20px var(--glow);
     font-weight: 800;
   }
-  .welcome p { font-size: 11px; color: var(--cyan); letter-spacing: 0.5px; }
+  .welcome p { font-size: 10px; color: var(--cyan); letter-spacing: 1px; margin-top: 2px; }
   .main-visual {
     position: relative;
-    height: 280px;
+    height: 270px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .central-ring {
-    width: 210px;
-    height: 210px;
+    width: 190px;
+    height: 190px;
     border-radius: 50%;
     background: radial-gradient(circle, #1a0033 30%, transparent 70%);
-    border: 2px solid #7a00ff;
-    box-shadow: 0 0 60px #6a00ff, inset 0 0 40px #4a00e0, 0 0 100px rgba(138,43,226,0.4);
+    border: 2px solid #6a00ff;
+    box-shadow: 0 0 50px #6a00ff, inset 0 0 40px #4a00e0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -151,172 +151,188 @@
     z-index: 2;
     cursor: pointer;
   }
-  .central-ring::before { 
-    content:''; position:absolute; inset:-20px; 
-    border: 1px solid rgba(157,78,221,0.5); 
-    border-radius:50%; 
-    animation: spin 20s linear infinite; 
-    box-shadow: 0 0 20px rgba(157,78,221,0.3);
+  .central-ring::before {
+    content: '';
+    position: absolute;
+    inset: -18px;
+    border: 1px solid rgba(138,43,226,0.5);
+    border-radius: 50%;
+    animation: spin 16s linear infinite;
   }
-  .central-ring::after { 
-    content:''; position:absolute; inset:-38px; 
-    border: 1px dashed rgba(255,123,71,0.4); 
-    border-radius:50%; 
-    animation: spin 32s linear infinite reverse; 
+  .central-ring::after {
+    content: '';
+    position: absolute;
+    inset: -36px;
+    border: 1px dashed rgba(0,240,255,0.3);
+    border-radius: 50%;
+    animation: spin 26s linear infinite reverse;
   }
   .rays {
     position: absolute;
     width: 320px;
     height: 320px;
-    background: conic-gradient(from 0deg, transparent 0 6deg, rgba(157,78,221,0.25) 6deg 9deg, transparent 9deg 15deg);
+    background: conic-gradient(from 0deg, transparent 0 10deg, rgba(123,47,255,0.15) 10deg 12deg, transparent 12deg 22deg);
     border-radius: 50%;
     animation: spin 40s linear infinite;
   }
   .left-gauge {
     position: absolute;
-    left: 12px;
-    top: 40px;
-    width: 110px;
-    height: 110px;
+    left: 14px;
+    top: 28px;
+    width: 96px;
+    height: 96px;
     text-align: center;
-    font-size: 10px;
+    font-size: 9px;
     cursor: pointer;
   }
   .gauge-circle {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(#00f5ff 0% 12%, #4a00e0 12% 100%);
+    background: conic-gradient(#00f0ff 0% 8%, #2a0a4a 8% 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: 0 0 25px rgba(0,245,255,0.4);
+    box-shadow: 0 0 20px rgba(0,240,255,0.3);
   }
-  .gauge-circle::before { content:''; position:absolute; inset:12px; background:var(--bg); border-radius:50%; }
-  .gauge-text { position:relative; z-index:1; font-size:26px; font-weight:800; text-shadow: 0 0 10px var(--cyan); }
+  .gauge-circle::before {
+    content: '';
+    position: absolute;
+    inset: 9px;
+    background: var(--bg);
+    border-radius: 50%;
+  }
+  .gauge-text { position: relative; z-index: 1; font-size: 22px; font-weight: 800; color: var(--cyan); }
   .panels {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    padding: 10px 14px;
+    gap: 8px;
+    padding: 6px 12px 10px;
   }
   .card {
     background: var(--panel);
-    border: 1px solid rgba(138,43,226,0.4);
+    border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 12px;
+    padding: 10px;
     font-size: 11px;
     cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s ease;
     backdrop-filter: blur(12px);
   }
   .card:hover, .card:active {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 0 25px var(--glow), 0 8px 20px rgba(0,0,0,0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(138,43,226,0.35);
+    border-color: rgba(123,47,255,0.6);
   }
-  .card h3 { font-size: 10px; letter-spacing: 1px; color: var(--muted); margin-bottom: 8px; text-transform: uppercase; }
+  .card h3 {
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
   .ai-card { cursor: default; }
   .ai-chat {
-    max-height: 140px;
+    max-height: 100px;
     overflow-y: auto;
-    margin: 8px 0;
+    margin: 6px 0;
     font-size: 11px;
     line-height: 1.45;
-    background: rgba(0,0,0,0.25);
-    border-radius: 10px;
-    padding: 6px;
   }
-  .ai-msg { margin: 5px 0; }
+  .ai-msg { margin: 3px 0; }
   .ai-msg.user { color: var(--cyan); }
-  .ai-msg.ai { color: #e0e0ff; }
-  .typing { color: var(--muted); font-style: italic; }
+  .ai-msg.ai { color: #ddd; }
+  .typing { color: var(--muted); font-style: italic; font-size: 10px; }
   .suggestions {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 8px;
+    gap: 4px;
+    margin-top: 6px;
   }
   .suggestion {
-    background: rgba(157,78,221,0.25);
+    background: rgba(138,43,226,0.25);
     border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 4px 10px;
+    border-radius: 12px;
+    padding: 3px 8px;
     font-size: 9px;
     cursor: pointer;
+    transition: background 0.15s;
   }
-  .suggestion:hover { background: rgba(157,78,221,0.45); }
+  .suggestion:hover { background: rgba(138,43,226,0.45); }
   .ai-input {
     width: 100%;
     background: rgba(0,0,0,0.5);
     border: 1px solid var(--border);
-    border-radius: 18px;
-    padding: 8px 12px;
+    border-radius: 16px;
+    padding: 7px 12px;
     color: var(--text);
     font-size: 11px;
-    margin-top: 8px;
+    margin-top: 6px;
+    outline: none;
   }
-  .activity, .quick { padding: 8px 14px; }
-  .activity div, .quick div { 
-    display: flex; 
-    justify-content: space-between; 
-    margin: 5px 0; 
-    font-size: 11px; 
+  .ai-input:focus { border-color: var(--cyan); box-shadow: 0 0 10px rgba(0,240,255,0.2); }
+  .activity, .quick { padding: 6px 14px 12px; }
+  .activity div, .quick div {
+    display: flex;
+    justify-content: space-between;
+    margin: 3px 0;
+    font-size: 11px;
     cursor: pointer;
-    padding: 6px 8px;
+    padding: 5px 6px;
     border-radius: 8px;
-    background: rgba(0,0,0,0.2);
+    transition: background 0.15s;
   }
-  .activity div:hover, .quick div:hover { background: rgba(157,78,221,0.25); }
+  .activity div:hover, .quick div:hover { background: rgba(138,43,226,0.15); }
   .modal {
     display: none;
     position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
+    inset: 0;
     background: rgba(0,0,0,0.75);
     z-index: 100;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(4px);
   }
   .modal.active { display: flex; }
   .modal-content {
-    background: var(--panel);
+    background: rgba(12,6,28,0.95);
     border: 1px solid var(--border);
     border-radius: 18px;
-    padding: 22px;
-    width: 340px;
-    max-height: 75vh;
+    padding: 20px;
+    width: 320px;
+    max-height: 70vh;
     overflow: auto;
     box-shadow: 0 0 40px var(--glow);
-    backdrop-filter: blur(20px);
   }
-  .modal-close { float: right; cursor: pointer; font-size: 20px; }
-  .codex-entry { margin: 10px 0; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 10px; cursor: pointer; border: 1px solid rgba(138,43,226,0.3); }
-  .codex-entry:hover { background: rgba(157,78,221,0.25); }
+  .modal-close { float: right; cursor: pointer; font-size: 18px; color: var(--muted); }
+  .codex-entry { margin: 8px 0; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 10px; cursor: pointer; border: 1px solid transparent; }
+  .codex-entry:hover { border-color: var(--border); background: rgba(138,43,226,0.15); }
   @keyframes spin { to { transform: rotate(360deg); } }
   .pulse { animation: pulse 2.8s ease-in-out infinite; }
-  @keyframes pulse { 
-    0%,100% { box-shadow: 0 0 50px #6a00ff, inset 0 0 30px #4a00e0; } 
-    50% { box-shadow: 0 0 80px #c77dff, inset 0 0 50px #6a00ff; } 
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 45px #6a00ff, inset 0 0 25px #4a00e0; }
+    50% { box-shadow: 0 0 80px #a020f0, inset 0 0 40px #6a00ff; }
   }
 </style>
 </head>
 <body>
 <div class="dashboard">
+  <div class="scanline"></div>
   <div class="status-bar">
-    <span id="time">18:14</span>
-    <span id="battery">48%</span>
+    <span id="time">16:09</span>
+    <span>NEURAL 98%</span>
   </div>
-  <div class="date-pill">13. november<br>18:14</div>
+  <div class="date-pill">9. AUGUST<br>11:03</div>
   <div class="header">
-    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'High-tech hybrid quantum operating system with Neural Link integration and Codex knowledge layer. Reality enhancement active.')">
+    <div class="logo" onclick="showModal('Enixx OS · The Nexus', 'High-tech hybrid quantum system. Neural Link active. Codex synchronized.')">
       <div class="logo-icon">⬡</div>
       <div>
-        <div>ENIXX OS</div>
-        <div style="font-size:9px;color:var(--muted);">THE NEXUS</div>
+        <div style="font-size:13px;">ENIXX OS</div>
+        <div style="font-size:8px;color:var(--muted);letter-spacing:1px;">THE NEXUS</div>
       </div>
     </div>
-    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 99%<br>Signal strength: Optimal<br>Codex access: Unlocked<br>Operator linked. Quantum pathways stable.')">NEURAL LINK: ACTIVE</div>
+    <div class="status-pill" onclick="showModal('Neural Link Status', 'NEURAL LINK: ACTIVE<br>Synchronization: 98%<br>Signal: Strong<br>Codex: Online<br>Operator linked.')">NEURAL LINK · ACTIVE</div>
   </div>
   <div class="welcome">
     <h1>WELCOME TO THE NEXUS</h1>
@@ -324,24 +340,24 @@
   </div>
   <div class="main-visual">
     <div class="rays"></div>
-    <div class="left-gauge" onclick="showModal('PS Q 6GR Gauge', 'Current quantum load: 3%<br>Neural Link load: Minimal<br>All cores stable. Holographic rendering optimal.')">
-      <div>PS Q 6GR</div>
-      <div class="gauge-circle"><div class="gauge-text" id="gauge">3%</div></div>
+    <div class="left-gauge" onclick="showModal('PS Q 6GR Gauge', 'Quantum load: 2%<br>Neural Link load: Minimal<br>All cores stable.')">
+      <div class="gauge-circle"><div class="gauge-text">2%</div></div>
+      <div style="margin-top:3px;color:var(--muted);">PS Q 6GR</div>
     </div>
-    <div class="central-ring pulse" onclick="showModal('Nexus Core', 'Digital signature: 88888888<br>Central nexus ring active.<br>Neural Link synchronized at 99%.<br>Holographic core online.')">
-      <div style="font-size:28px;font-weight:800;letter-spacing:2px;text-shadow:0 0 15px var(--glow);">88888888</div>
+    <div class="central-ring pulse" onclick="showModal('Nexus Core', 'Digital signature: 88888888<br>Central nexus ring active.<br>Neural Link synchronized.')">
+      <div style="font-size:24px;font-weight:800;letter-spacing:1px;">88888888</div>
     </div>
   </div>
   <div class="panels">
-    <div class="card" onclick="showModal('System Overview', 'CPU: 48%<br>GPU: 37%<br>NPU: 91%<br>RAM: 62%<br><br>QUANTUM LOAD: LOW<br>Neural Link: Stable<br>Holographic layer: Active')">
-      <h3>SYSTEM OVERVIEW</h3>
-      CPU <span id="cpu">48</span>% · GPU <span id="gpu">37</span>%<br>NPU <span id="npu">91</span>% · RAM <span id="ram">62</span>%<br><span style="color:#00f5ff;">QUANTUM LOAD LOW</span>
+    <div class="card" onclick="showModal('System Overview', 'CPU: 52%<br>GPU: 41%<br>NPU: 87%<br>RAM: 69%<br><br>QUANTUM LOAD: LOW<br>Neural Link: Stable')">
+      <h3>System Overview</h3>
+      CPU 52% · GPU 41%<br>NPU 87% · RAM 69%<br><span style="color:#00f0ff;font-size:10px;">QUANTUM LOAD LOW</span>
     </div>
     <div class="card ai-card" id="ai-card">
-      <h3>AI COMPANION · NEURAL</h3>
+      <h3>AI Companion · Neural</h3>
       NEXUS AI · LINKED
       <div class="ai-chat" id="ai-chat">
-        <div class="ai-msg ai">Neural Link established at 99%. How can I enhance your reality, Operator?</div>
+        <div class="ai-msg ai">Neural Link established. How can I enhance your reality, Operator?</div>
       </div>
       <div class="suggestions">
         <div class="suggestion" onclick="quickAsk('System status?')">System status?</div>
@@ -350,27 +366,27 @@
       </div>
       <input class="ai-input" id="ai-input" placeholder="Ask via Neural Link..." onkeypress="if(event.key==='Enter') sendAI()">
     </div>
-    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active.<br>Holographic islands synchronized.')">
-      <h3>SPATIAL DESKTOP</h3>
+    <div class="card" onclick="showModal('Spatial Desktop', 'FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES: 5<br><br>Neural-linked spatial layer active.')">
+      <h3>Spatial Desktop</h3>
       FLOATING ISLAND VIEW<br>ACTIVE WORKSPACES 5
     </div>
-    <div class="card" onclick="showModal('Secure Vault', 'ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA<br>Neural authenticated.<br>Post-quantum vault sealed.')">
-      <h3>SECURE VAULT</h3>
+    <div class="card" onclick="showModal('Secure Vault', 'ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA<br>Neural authenticated.')">
+      <h3>Secure Vault</h3>
       ENCRYPTED · ENIXX-SECURE<br>ACCESS LEVEL OMEGA
     </div>
   </div>
   <div class="activity">
-    <div onclick="showModal('Activity', 'Neural Link synchronized at 18:14:22<br>Status: Optimal')"><span>Neural Link synchronized</span><span>18:14:22</span></div>
-    <div onclick="showModal('Activity', 'Codex entry accessed at 18:12:45<br>Status: Success')"><span>Codex entry accessed</span><span>18:12:45</span></div>
-    <div onclick="showModal('Activity', 'Secure Workspace accessed at 18:10:11<br>Status: Authenticated')"><span>Secure Workspace accessed</span><span>18:10:11</span></div>
+    <div onclick="showModal('Activity', 'Neural Link synchronized at 20:45:02<br>Status: Active')"><span>Neural Link synchronized</span><span>20:45:02</span></div>
+    <div onclick="showModal('Activity', 'Codex entry accessed at 20:44:11<br>Status: Success')"><span>Codex entry accessed</span><span>20:44:11</span></div>
+    <div onclick="showModal('Activity', 'Secure Workspace accessed at 20:49:32<br>Status: Authenticated')"><span>Secure Workspace accessed</span><span>20:49:32</span></div>
   </div>
   <div class="quick">
-    <div onclick="showModal('Quick Launch', 'WORKSPACE opened. Spatial layer active.')">WORKSPACE</div>
+    <div onclick="showModal('Quick Launch', 'WORKSPACE opened.')">WORKSPACE</div>
     <div onclick="openCodex()">CODEX</div>
     <div onclick="showModal('Quick Launch', 'VAULT accessed. Neural auth confirmed.')">VAULT</div>
-    <div onclick="showModal('Quick Launch', 'NETWORK map active. Quantum links online.')">NETWORK</div>
-    <div onclick="showModal('Quick Launch', 'SETTINGS panel. Configure Enixx OS.')">SETTINGS</div>
-    <div onclick="showModal('Quick Launch', 'MORE options available.')">MORE</div>
+    <div onclick="showModal('Quick Launch', 'NETWORK map active.')">NETWORK</div>
+    <div onclick="showModal('Quick Launch', 'SETTINGS panel.')">SETTINGS</div>
+    <div onclick="showModal('Quick Launch', 'MORE options.')">MORE</div>
   </div>
 </div>
 
@@ -378,22 +394,14 @@
   <div class="modal-content">
     <span class="modal-close" onclick="closeModal()">&times;</span>
     <h3 id="modal-title"></h3>
-    <div id="modal-body" style="margin-top:10px; line-height:1.5;"></div>
+    <div id="modal-body" style="margin-top:10px; line-height:1.4;"></div>
   </div>
 </div>
 
 <script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js')
-      .then(reg => console.log('SW registered'))
-      .catch(err => console.log('SW registration failed'));
-  });
-}
-
 const codexEntries = [
-  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 99%. Allows seamless AI interaction and spatial control." },
-  { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault. Holographic layer enabled." },
+  { title: "Neural Link Protocol", body: "Direct brain-computer interface active. Synchronization maintained at 98%. Allows seamless AI interaction and spatial control." },
+  { title: "The Nexus Architecture", body: "Hybrid core combining Enixx OS identity with spatial floating workspaces, quantum links, and secure vault." },
   { title: "Codex Access", body: "Knowledge layer unlocked via Neural Link. Contains system lore, security protocols, and operator history." },
   { title: "Security Core", body: "Enixx-Secure active. Deny-by-default capabilities. Post-quantum cryptography enabled." }
 ];
@@ -411,7 +419,7 @@ document.getElementById('modal').addEventListener('click', function(e) {
 });
 
 function openCodex() {
-  let body = '<div style="margin-bottom:12px; font-weight:600;">CODEX · Neural Linked Knowledge Layer</div>';
+  let body = '<div style="margin-bottom:10px;">CODEX · Neural Linked Knowledge Layer</div>';
   codexEntries.forEach(entry => {
     body += `<div class="codex-entry" onclick="showModal('${entry.title}', '${entry.body}')">${entry.title}</div>`;
   });
@@ -420,17 +428,17 @@ function openCodex() {
 
 const responses = {
   default: [
-    "Neural Link processing... The Nexus responds with holographic clarity.",
-    "Synchronized at 99%. How else may I assist via the link?",
-    "Codex reference located. Proceeding through quantum pathways.",
+    "Neural Link processing... The Nexus responds.",
+    "Synchronized. How else may I assist via the link?",
+    "Codex reference located. Proceeding.",
     "Floating workspace updated through neural pathway.",
-    "Enixx OS core stable. Neural Link holding optimally."
+    "Enixx OS core stable. Neural Link holding."
   ],
-  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (99% sync). All cores nominal. Holographic layer active.",
-  vault: "Secure Vault accessed via Neural Link. Omega clearance confirmed. Post-quantum seals verified.",
-  nexus: "The Nexus is the neural-linked spatial core of Enixx OS with holographic reality enhancement.",
+  status: "System status: QUANTUM LOAD LOW. Neural Link: ACTIVE (98% sync). All cores nominal.",
+  vault: "Secure Vault accessed via Neural Link. Omega clearance confirmed.",
+  nexus: "The Nexus is the neural-linked spatial core of Enixx OS.",
   codex: "Codex opened. Knowledge layer available. Select an entry.",
-  neural: "Neural Link status: ACTIVE. Synchronization optimal at 99%. Operator linked."
+  neural: "Neural Link status: ACTIVE. Synchronization strong. Operator linked."
 };
 
 function addMessage(text, isUser = false) {
@@ -489,20 +497,16 @@ function quickAsk(q) {
 
 setInterval(() => {
   const now = new Date();
-  document.getElementById('time').textContent = 
-    now.getHours().toString().padStart(2,'0') + ':' + 
+  document.getElementById('time').textContent =
+    now.getHours().toString().padStart(2,'0') + ':' +
     now.getMinutes().toString().padStart(2,'0');
-  // Live metric fluctuations for high-tech feel
-  const cpu = 45 + Math.floor(Math.random()*10);
-  const gpu = 34 + Math.floor(Math.random()*8);
-  const npu = 88 + Math.floor(Math.random()*6);
-  const ram = 58 + Math.floor(Math.random()*8);
-  document.getElementById('cpu').textContent = cpu;
-  document.getElementById('gpu').textContent = gpu;
-  document.getElementById('npu').textContent = npu;
-  document.getElementById('ram').textContent = ram;
-  document.getElementById('gauge').textContent = (2 + Math.floor(Math.random()*3)) + '%';
-}, 3000);
+}, 1000);
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
 </script>
 </body>
 </html>
